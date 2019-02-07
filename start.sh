@@ -8,6 +8,13 @@ function runBot {
 	fi
 }
 
+function printStatus {
+	[[ $1 == 0 ]] && echo -e "\033[32;1msuccess\033[0m" || echo -e "\033[31;1mfail\033[0m"
+}
+
+function printRunning {
+	echo -e "\033[32;1mRunning $1...\033[0m"
+}
 
 #function checkOutput {
 #	"$@"
@@ -18,10 +25,14 @@ function runBot {
 #	fi
 #	return $code
 #}
+printRunning "ESLint"
 eslint .
 eslintOutput=$?
+printStatus $eslintOutput
+printRunning "Prettier"
 prettier --check "*.js"
 prettierOutput=$?
+printStatus $prettierOutput
 
 doRun=$(($eslintOutput + $prettierOutput))
 if [[ $force == true ]]; then
