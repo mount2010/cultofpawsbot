@@ -1,0 +1,6 @@
+{
+	"approximateAllowedDistance": 1,
+	"prefix": "-",
+	"status": "Cult of Paws Bot | {{prefix}}help",
+	"commandDirectory": "commands"
+}

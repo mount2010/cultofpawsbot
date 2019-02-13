@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias echo="echo [Bootup Script] $1"
+
 function runBot {
 	node index.js
 	if [[ $? != 0 ]]; then
@@ -33,6 +35,7 @@ printRunning "Prettier"
 prettier --check "*.js"
 prettierOutput=$?
 printStatus $prettierOutput
+printRunning "Bot"
 
 doRun=$(($eslintOutput + $prettierOutput))
 if [[ $force == true ]]; then
@@ -40,6 +43,6 @@ if [[ $force == true ]]; then
 elif [[ $doRun == 0 ]]; then
 	runBot
 else
-	echo -e "\033[31;1mAll checks failed, refusing to run bot. (Prefix force=true to force a run.)\033[0m"
+	echo -e "\033[31;1mChecks failed, refusing to run bot. (Prefix force=true to force a run.)\033[0m"
 	exit 1
 fi

@@ -13,8 +13,12 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "eslint": "^5.13.0",
+    "js-levenshtein": "^1.1.6",
     "js-logger": "^1.6.0",
     "mysql": "^2.16.0",
     "prettier": "^1.16.4"
+  },
+  "devDependencies": {
+    "mustache": "^3.0.1"
   }
 }
