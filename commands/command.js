@@ -1,4 +1,4 @@
-const embeds = require("./embeds.js");
+const embeds = require(`${process.cwd()}/util/embeds.js`);
 
 class Command {
 	constructor(meta) {

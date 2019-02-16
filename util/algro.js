@@ -1,6 +1,6 @@
 const levenshtein = require("js-levenshtein");
 const logger = require("js-logger");
-const config = require("./config.json");
+const config = require(`${process.cwd()}/config/config.json`);
 
 class ApproximateNameCache {
 	/**

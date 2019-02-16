@@ -5,10 +5,10 @@
 
 const fs = require("fs");
 const logger = require("js-logger");
-const algro = require("./algro.js");
-const embeds = require("./embeds.js");
-const config = require("./config.json");
 const path = require("path");
+const algro = require(`${process.cwd()}/util/algro.js`);
+const embeds = require(`${process.cwd()}/util/embeds.js`);
+const config = require(`${process.cwd()}/config/config.json`);
 
 class CommandStorage {
 	constructor() {
@@ -88,7 +88,7 @@ class Handler {
 		for (let i = 0; i < files.length; i++) {
 			const file = files[i];
 			if (file.match(/.js$/)) {
-				this.loadCommand(path.join(process.cwd(), folder, file));
+				this.loadCommand(path.join(process.cwd(),  folder, file));
 			}
 		}
 	}
@@ -117,9 +117,8 @@ class Handler {
 			// yes, suggest
 			new embeds.Embed(
 				`Command ${command} not found.`,
-				`Did you mean \`${approximated}\`?`,
-				msg
-			).send();
+				`Did you mean \`${approximated}\`?`
+			).send(msg.channel);
 			logger.debug(`Approximated command ${command} to ${approximated}`);
 			return;
 		}

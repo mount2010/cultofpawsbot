@@ -1,9 +1,9 @@
 #!/bin/bash
 
-alias echo="echo [Bootup Script] $1"
+indexLocation="index.js"
 
 function runBot {
-	node index.js
+	node $indexLocation
 	if [[ $? != 0 ]]; then
 		echo -e "\033[31;1mThe bot has failed. Please fix the issue and restart it.\033[0m"
 		exit 1
@@ -28,11 +28,11 @@ function printRunning {
 #	return $code
 #}
 printRunning "ESLint"
-eslint .
+eslint . 
 eslintOutput=$?
 printStatus $eslintOutput
 printRunning "Prettier"
-prettier --check "*.js"
+prettier --check "*.js" 
 prettierOutput=$?
 printStatus $prettierOutput
 printRunning "Bot"

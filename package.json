@@ -1,24 +1,24 @@
 {
-  "name": "root",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bash start.sh"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "discord.js": "^11.4.2",
-    "eslint": "^5.13.0",
-    "js-levenshtein": "^1.1.6",
-    "js-logger": "^1.6.0",
-    "mysql": "^2.16.0",
-    "prettier": "^1.16.4"
-  },
-  "devDependencies": {
-    "mustache": "^3.0.1"
-  }
+	"name": "root",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"try npm run lint or npm run format\" && exit 1",
+		"start": "bash init/start.sh",
+		"format": "prettier --write ./*",
+		"lint": "eslint .",
+		"doc": "jsdoc . -o doc"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"discord.js": "^11.4.2",
+		"eslint": "^5.13.0",
+		"js-levenshtein": "^1.1.6",
+		"js-logger": "^1.6.0",
+		"mysql": "^2.16.0",
+		"prettier": "^1.16.4"
+	}
 }

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const logger = require("js-logger");
+// const logger = require("js-logger");
 
 class Embed extends Discord.RichEmbed {
 	/**
@@ -8,12 +8,11 @@ class Embed extends Discord.RichEmbed {
 	 * @class
 	 * @see {@link https://discord.js.org/#/docs/main/stable/class/RichEmbed}
 	 */
-	constructor(title = "", description = "", msg) {
+	constructor(title = "", description = "") {
 		super();
 		this.title = title;
 		this.description = description;
 		this.emoji = [];
-		this.msg = msg;
 	}
 	color(what) {
 		super.setColor(what);
@@ -24,15 +23,11 @@ class Embed extends Discord.RichEmbed {
 		this.title = `${this.emoji.join(" ")} ${this.title}`;
 		return this;
 	}
-	send() {
-		if (!this.msg) {
-			logger.debug("Can't .send() message without passing a message in");
-			return;
-		} else {
-			this.msg.channel.send(this);
-		}
+	send(channel) {
+		channel.send(this);
 	}
 }
+module.exports.Embed = Embed;
 
 class SuccessEmbed extends Embed {
 	/**
@@ -46,6 +41,7 @@ class SuccessEmbed extends Embed {
 		super.emoji(":white_check_mark:");
 	}
 }
+module.exports.SuccessEmbed = SuccessEmbed;
 
 class FailureEmbed extends Embed {
 	/**
@@ -59,9 +55,27 @@ class FailureEmbed extends Embed {
 		super.emoji(":x:");
 	}
 }
+module.exports.FailureEmbed = FailureEmbed;
 
-module.exports = {
-	Embed,
-	SuccessEmbed,
-	FailureEmbed
-};
+/*
+module.exports.Responser = class {
+	**
+	 * Utility for adding reaction based choice selection
+	 * 
+	 * @class
+	 * @param {[Emoji, function]} emojiMapped Emojis and the actions to take when clicked
+	 * @param {object} options Options for the reponser
+	 *
+	constructor(emojiMapped, options) {
+		logger.log("Meow");
+	}
+	**
+	 * Set timeout for reactions in ms
+	 * 
+	 * @param {int} ms Timeout for reactions
+	 *
+	timeOut (ms) {
+		logger.log("Mia");
+	}
+}
+*/
