@@ -4,13 +4,11 @@ const config = require(`${process.cwd()}/config/config.json`);
 
 class ApproximateNameCache {
 	/**
-	 * Caches approximate (levenshtein) names and maps then to commands.
-	 * @param {cmdStore} cmdStore Command store to operate upon
+	 * Caches approximate (levenshtein) names and maps them to their names.
 	 * @class
 	 */
-	constructor(cmdStore) {
+	constructor() {
 		this.cache = new Map();
-		this.cmdStore = cmdStore;
 	}
 	/**
 	 * Adds an cache entry
@@ -20,12 +18,6 @@ class ApproximateNameCache {
 	add(name, command) {
 		if (typeof name !== "string") {
 			throw new Error("name for command cache must be string");
-		}
-		if (!this.cmdStore.has(command)) {
-			logger.debug(
-				`Refusing to map ${name} to ${command}: command does not exist`
-			);
-			return;
 		}
 		this.cache.set(name, command);
 	}
@@ -50,12 +42,12 @@ class ApproximateNameCache {
 class Approximater {
 	/**
 	 * Utility class for string approximation
+	 * @param store Map of names to approximate with
 	 * @class
-	 * @param {commandStore} cmdStore Command store to operate upon
 	 */
-	constructor(cmdStore) {
-		this.cmdStore = cmdStore;
-		this.cache = new ApproximateNameCache(this.cmdStore);
+	constructor(store) {
+		this.store = store;
+		this.cache = new ApproximateNameCache();
 	}
 	/**
 	 * Find closest command name to string
@@ -64,7 +56,7 @@ class Approximater {
 	 */
 	approximate(str) {
 		// temporary solution
-		if (this.cmdStore.has(str)) {
+		if (this.store.has(str)) {
 			return str;
 		}
 		// does the cache have it
@@ -73,7 +65,7 @@ class Approximater {
 			return this.cache.retrieve(str);
 		}
 		// no, approximate
-		const keyIterator = this.cmdStore.commandNames.keys();
+		const keyIterator = this.store.keys();
 		let result = keyIterator.next();
 		while (!result.done) {
 			const el = result.value;
@@ -85,6 +77,8 @@ class Approximater {
 			}
 			result = keyIterator.next();
 		}
+		// no match  record that
+		this.cache.add(str, null);
 		return undefined;
 	}
 }
