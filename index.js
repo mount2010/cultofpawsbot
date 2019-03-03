@@ -24,7 +24,6 @@ class COPBotClient extends Discord.Client {
 	 */
 	constructor() {
 		super({});
-		this.messageListening = [];
 		this.handler = new handler.Handler(this);
 	}
 	/**
@@ -34,7 +33,7 @@ class COPBotClient extends Discord.Client {
 	 */
 	setupEvents() {
 		this.on("ready", () => {
-			Logger.info(`Ready as ${this.user.username}!`);
+			Logger.info(`\x1b[32;1mReady as ${this.user.username}!\x1b[0m`);
 			this.setStatus();
 		});
 		this.on("message", msg => {
@@ -67,7 +66,7 @@ class COPBotClient extends Discord.Client {
 	 * @returns {undefined}
 	 */
 	loadCommands() {
-		this.handler.loadCommandsIn(config.commandDirectory);
+		this.handler.loader.loadCommandsIn(config.commandDirectory);
 	}
 }
 

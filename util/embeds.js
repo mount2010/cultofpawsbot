@@ -14,17 +14,17 @@ class Embed extends Discord.RichEmbed {
 		this.description = description;
 		this.emoji = [];
 	}
-	color(what) {
+	scolor(what) {
 		super.setColor(what);
 		return this;
 	}
-	emoji(what) {
+	semoji(what) {
 		this.emoji.push(what);
 		this.title = `${this.emoji.join(" ")} ${this.title}`;
 		return this;
 	}
 	send(channel) {
-		channel.send(this);
+		return channel.send(this);
 	}
 }
 module.exports.Embed = Embed;
@@ -37,8 +37,8 @@ class SuccessEmbed extends Embed {
 	 */
 	constructor(title = "", description = "") {
 		super(title, description);
-		super.color("#00ff00");
-		super.emoji(":white_check_mark:");
+		super.scolor("#00ff00");
+		super.semoji(":white_check_mark:");
 	}
 }
 module.exports.SuccessEmbed = SuccessEmbed;
@@ -51,8 +51,8 @@ class FailureEmbed extends Embed {
 	 */
 	constructor(title = "", description = "") {
 		super(title, description);
-		super.color("#ff0000");
-		super.emoji(":x:");
+		super.scolor("#ff0000");
+		super.semoji(":x:");
 	}
 }
 module.exports.FailureEmbed = FailureEmbed;

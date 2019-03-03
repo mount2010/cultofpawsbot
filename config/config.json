@@ -1,6 +1,12 @@
 {
-	"approximateAllowedDistance": 1,
 	"prefix": "--",
 	"status": "Cult of Paws Bot | {{prefix}}help",
-	"commandDirectory": "commands/commands"
+	"commandDirectory": "commands/commands",
+	"apiURL": "https://api.discorddungeons.me",
+	"adminName": "Elder",
+	"db": {
+		"db": "copbot",
+		"ip": "localhost",
+		"connectionLimit": 10
+	}
 }

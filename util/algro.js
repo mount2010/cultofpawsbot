@@ -1,6 +1,5 @@
 const levenshtein = require("js-levenshtein");
 const logger = require("js-logger");
-const config = require(`${process.cwd()}/config/config.json`);
 
 class ApproximateNameCache {
 	/**
@@ -42,12 +41,13 @@ class ApproximateNameCache {
 class Approximater {
 	/**
 	 * Utility class for string approximation
-	 * @param store Map of names to approximate with
+	 * @param {Map} store Map of names to approximate with (will check against the names in this variable)
 	 * @class
 	 */
-	constructor(store) {
+	constructor(store, distance = 1) {
 		this.store = store;
 		this.cache = new ApproximateNameCache();
+		this.distance = distance;
 	}
 	/**
 	 * Find closest command name to string
@@ -70,7 +70,7 @@ class Approximater {
 		while (!result.done) {
 			const el = result.value;
 			const distance = levenshtein(el, str);
-			if (distance <= config.approximateAllowedDistance) {
+			if (distance <= this.distance) {
 				// found a match, add to cache!
 				this.cache.add(str, el);
 				return el;

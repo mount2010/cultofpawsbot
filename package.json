@@ -6,9 +6,9 @@
 	"scripts": {
 		"test": "echo \"try npm run lint or npm run format\" && exit 1",
 		"start": "bash init/start.sh",
-		"format": "prettier --write ./*",
+		"format": "prettier --write ./**/*.js",
 		"lint": "eslint .",
-		"doc": "jsdoc . -o doc"
+		"doc": "jsdoc ./* -r -d out/doc -c .jsdoc_conf.json"
 	},
 	"keywords": [],
 	"author": "",
@@ -18,7 +18,8 @@
 		"eslint": "^5.13.0",
 		"js-levenshtein": "^1.1.6",
 		"js-logger": "^1.6.0",
-		"mysql": "^2.16.0",
+		"mysql2": "^1.6.5",
+		"node-fetch": "^2.3.0",
 		"prettier": "^1.16.4"
 	}
 }

@@ -32,7 +32,7 @@ eslint .
 eslintOutput=$?
 printStatus $eslintOutput
 printRunning "Prettier"
-prettier --check "*.js" 
+prettier --check "./**/*.js" 
 prettierOutput=$?
 printStatus $prettierOutput
 printRunning "Bot"

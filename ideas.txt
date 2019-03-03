@@ -1,0 +1,25 @@
+this document is mostly for myself. dont expect BBC World Service English
+Referall system:
+ > configurable on/off default off
+ > does refer command, bot generates a one use invite for user, stores invite code in db.
+ > user join, is invite use > 0? yes: add 1 to referall rewards (can claim with elders), no: ignore.
+ > on startup, fetch invites from all guilds. retrieve invite with correct code in db.
+ > goto 2.
+
+Request system:
+ > user [R] item DONE
+ > on bot start, get all items from API. if API == 429, wait 1 minute, then contact again. while API == 429, if request attempted, tell user bot is waiting. DONE
+ > read not borrowable items from db. disable items
+ > bot confirms item borrowable (default: all items)
+ > elder can set item to not borrowable with requestadmin/radmin.
+ > request >> db DONE
+ > elder confirms and donates item, request popped from db
+
+DRPG docs:
+ > store docs in db.
+ > command: doc subject
+ > paginated.
+ > approved user can add docs: adddoc subject text <--page page> <--author id/mention> 
+ > approveuser cmd.
+
+

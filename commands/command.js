@@ -2,7 +2,15 @@ const embeds = require(`${process.cwd()}/util/embeds.js`);
 
 class Command {
 	constructor(meta) {
-		this.meta = meta;
+		const defaults = {
+			help: "no help provided",
+			category: "none",
+			helplong: "no help provided"
+		};
+		this.meta = {
+			...defaults,
+			...meta
+		};
 	}
 	// eslint-disable-next-line no-unused-vars
 	run(client, msg, args) {
